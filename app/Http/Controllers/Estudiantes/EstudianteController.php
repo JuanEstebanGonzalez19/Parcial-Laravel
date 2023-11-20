@@ -63,9 +63,7 @@ class EstudianteController extends Controller
     public function edit(Estudiante $estudiante)
     {
         $carreras = Carrera::all()->pluck('nombre', 'id');
-
         $data = compact('estudiante', 'carreras');
-
         return view('estudiantes.edit', $data);
     }
 
@@ -83,19 +81,15 @@ class EstudianteController extends Controller
             'direccion' => 'required',
             'carrera_id' => 'required',
         ]);
-
         $estudiante->update($request->all());
-
         return redirect()->route('estudiantes.index')->with('success','Estudiante actualizado correctamente');
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Estudiante $estudiante)
     {
         $estudiante->delete();
-
         return redirect()->route('estudiantes.index')->with('success','Estudiante eliminado correctamente');
     }
 }
